@@ -1,0 +1,36 @@
+.LocationReinstateForm {
+
+}
+.LocationReinstateForm__content {
+  padding: 50px;
+}
+
+.LocationReinstateForm__question {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+}
+.LocationReinstateForm__buttons {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 25px;
+}
+.LocationReinstateForm__buttons > .button {
+  color: #fff;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: 0px;
+}
+.LocationReinstateForm__buttons > .button:not(:first-child) {
+  margin-left: 20px;
+}
+.LocationReinstateForm__buttons > .button.button--green {
+  background-color: green;
+}
+.LocationReinstateForm__buttons > .button.button--red {
+  background-color: #cc0000;
+}
