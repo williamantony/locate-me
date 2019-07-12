@@ -1,15 +1,20 @@
 require('dotenv').config();
 
 const express =  require('express');
+const http = require('http');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const connectSocket = require('./socket');
 
 const server = express();
+const httpServer = http.createServer(server);
+
 server.use(bodyParser.json());
 server.use(cors());
 morgan("combined");
+
 
 const {
   PORT,
@@ -69,7 +74,9 @@ server.post('/request-status', (req, res) => {
 });
 
 
+connectSocket(httpServer);
 
-server.listen(PORT, () => {
+
+httpServer.listen(PORT, () => {
   console.log(`Server is listening on http://localhost:${PORT}`)
 });
