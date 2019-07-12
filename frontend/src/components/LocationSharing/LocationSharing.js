@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 import './LocationSharing.css';
 
 class LocationSharing extends Component {
@@ -14,6 +15,15 @@ class LocationSharing extends Component {
         message: '',
       },
     };
+
+    this.socket = io('http://localhost:5000', {
+      path: '/location',
+    });
+
+    // socket.on('connection', () => {
+      
+    // });
+
   }
 
   componentDidMount() {
@@ -47,6 +57,10 @@ class LocationSharing extends Component {
 
     global.navigator.geolocation.watchPosition(onSuccess, onError, positionOptions);
 
+  }
+
+  componentDidUpdate() {
+    this.socket.emit('location-coordinates', this.state.coords);
   }
 
   render() {
