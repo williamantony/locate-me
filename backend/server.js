@@ -7,23 +7,26 @@ const morgan = require('morgan');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const connectSocket = require('./socket');
+const setRoutes = require('./api/routes/routes');
 
 const server = express();
-const httpServer = http.createServer(server);
 
 server.use(bodyParser.json());
 server.use(cors());
-morgan("combined");
+server.use(morgan("tiny"));
+
 
 
 const {
   PORT,
+  WS_PORT,
   SMTP_EMAIL,
   SMTP_PASSWORD,
   TEST_EMAIL_TO,
 } = process.env;
 
-server.post('/mail', async (req, res) => {
+
+server.post('/text', async (req, res) => {
   
   try {
 
@@ -74,9 +77,23 @@ server.post('/request-status', (req, res) => {
 });
 
 
+
+setRoutes(server);
+
+
+server.listen(PORT, () => {
+  console.log(`Server is listening on http://localhost:${PORT}`)
+});
+
+
+/**
+ * HTTP Server for Websocket
+ * on a separate Port.
+ */
+
+const httpServer = http.createServer();
 connectSocket(httpServer);
 
-
-httpServer.listen(PORT, () => {
-  console.log(`Server is listening on http://localhost:${PORT}`)
+httpServer.listen(WS_PORT, () => {
+  console.log(`Server is listening on http://localhost:${WS_PORT}`)
 });
