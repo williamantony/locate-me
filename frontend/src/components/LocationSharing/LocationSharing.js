@@ -16,7 +16,7 @@ class LocationSharing extends Component {
       },
     };
 
-    this.socket = io('http://localhost:5000', {
+    this.socket = io('http://localhost:5050', {
       path: '/location',
     });
 

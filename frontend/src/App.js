@@ -6,11 +6,13 @@ import GPSReceiver from './components/GPSReceiver/GPSReceiver';
 import GPSSender from './components/GPSSender/GPSSender';
 import LocationSharing from './components/LocationSharing/LocationSharing';
 import LocationReinstateForm from './components/LocationReinstateForm/LocationReinstateForm';
+import UserIdentifier from './components/UserIdentifier/UserIdentifier';
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <UserIdentifier />
       <Switch>
         <Route exact path="/" component={GPSReceiver} />
         <Route exact path="/request" component={GPSSender} />

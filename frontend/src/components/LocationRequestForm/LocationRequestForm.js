@@ -20,14 +20,16 @@ class LocationRequestForm extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const message = `William is requesting your location using LocateMe! https://localhost:3000/DAs145s`;
-      // Send SMS as Request
-      await axios.post('http://localhost:9090/text', {
-        number: this.state.phoneNumber,
-        message,
-      });
+      const clientId = sessionStorage.getItem('client');
 
-      console.log('Success: SMS Sent');
+      const endpoint = 'http://localhost:5000/location/request';
+
+      const request = {
+        phone: this.state.phoneNumber,
+        sender_id: clientId,
+      };
+
+      await axios.post(endpoint, request);
 
     } catch (error) {
       console.log(error);

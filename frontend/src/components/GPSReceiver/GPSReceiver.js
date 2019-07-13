@@ -7,7 +7,7 @@ import LocationSummary from '../LocationSummary/LocationSummary';
 class GPSReceiver extends Component {
   constructor(props) {
     super(props);
-    this.socket = io('http://localhost:5000', {
+    this.socket = io('http://localhost:5050', {
       path: '/location',
     });
   }
