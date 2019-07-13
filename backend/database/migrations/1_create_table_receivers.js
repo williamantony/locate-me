@@ -1,10 +1,9 @@
-
 exports.up = async function(knex) {
   const tableExists = await knex.schema.hasTable('receivers');
   if (!tableExists) {
     return knex.schema.createTable('receivers', (table) => {
 
-      table.uuid('id');
+      table.uuid('receiver_id').primary();
       table.string('connection');
 
     });
