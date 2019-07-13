@@ -4,6 +4,7 @@ exports.up = async function(knex) {
     return knex.schema.createTable('receivers', (table) => {
 
       table.uuid('receiver_id').primary();
+      table.string('phone', 16);
       table.string('connection');
 
     });

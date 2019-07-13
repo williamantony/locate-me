@@ -6,7 +6,7 @@ exports.up = async function(knex) {
       table.uuid('request_id').primary();
       table.uuid('sender_id');
       table.uuid('receiver_id');
-      table.json('location');
+      table.json('location').defaultTo({});
       table.timestamps();
 
       table.foreign('sender_id').references('sender_id').inTable('senders');
