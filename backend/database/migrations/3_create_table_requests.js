@@ -4,10 +4,11 @@ exports.up = async function(knex) {
     return knex.schema.createTable('requests', (table) => {
 
       table.uuid('request_id').primary();
+      table.string('status').defaultTo('created');
       table.uuid('sender_id');
       table.uuid('receiver_id');
       table.json('location').defaultTo({});
-      table.timestamps();
+      table.timestamps(true, true);
 
       table.foreign('sender_id').references('sender_id').inTable('senders');
       table.foreign('receiver_id').references('receiver_id').inTable('receivers');
