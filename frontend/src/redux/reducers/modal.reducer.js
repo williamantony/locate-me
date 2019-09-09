@@ -37,7 +37,7 @@ export default (state = initalState, action) => {
           if (modalId !== action.payload.modalId) {
             return {
               ...newState,
-              [modalId]: state[modalId],
+              [modalId]: state.instances[modalId],
             };
           }
           return newState;
@@ -50,7 +50,7 @@ export default (state = initalState, action) => {
         instances: {
           ...state.instances,
           [action.payload.modalId]: {
-            ...state[action.payload.modalId],
+            ...state.instances[action.payload.modalId],
             isVisible: true,
           },
         },
@@ -62,7 +62,7 @@ export default (state = initalState, action) => {
         instances: {
           ...state.instances,
           [action.payload.modalId]: {
-            ...state[action.payload.modalId],
+            ...state.instances[action.payload.modalId],
             isVisible: false,
           },
         },

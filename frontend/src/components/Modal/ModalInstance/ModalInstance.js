@@ -14,9 +14,16 @@ class ModalInstance extends PureComponent {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.modal.isVisible !== state.isVisible) {
+    if (props.id !== state.id) {
       return {
-        isVisible: props.modal.isVisible,
+        id: props.id,
+        isVisible: props.isVisible,
+        content: props.content,
+      };
+    }
+    if (props.isVisible !== state.isVisible) {
+      return {
+        isVisible: props.isVisible,
       };
     }
     return null;
@@ -31,23 +38,28 @@ class ModalInstance extends PureComponent {
     let modalClass = `ModalInstance`;
     modalClass = `${modalClass}${ this.state.isVisible ? ` ModalInstance--isVisible` : ``}`;
 
+    if (!this.state.content) return null;
+
     return (
       <div className={modalClass}>
-        <div className="ModalInstance__wrapper">
-          <div className="ModalInstance__box">
+        <div className="ModalInstance__bg" onClick={this.hideModal}></div>
+        <div className="ModalInstance__box">
 
             <div className="ModalInstance__header">
-              <div className="ModalInstance__close-icon" onClick={this.hideModal}></div>
+              <div className="ModalInstance__close-icon" onClick={this.hideModal}>
+                <div className="ModalInstance__close-icon__image"></div>
+              </div>
             </div>
             <div className="ModalInstance__body">
-              {
-                React.cloneElement(this.state.content, {
-                  modalId: this.state.id,
-                })
-              }
+              <div className="ModalInstance__body__content">
+                {
+                  React.cloneElement(this.state.content, {
+                    modalId: this.state.id,
+                  })
+                }
+              </div>
             </div>
-
-          </div>
+            
         </div>
       </div>
     );
@@ -56,8 +68,11 @@ class ModalInstance extends PureComponent {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const modal = state.modal.instances[ownProps.id];
+  const { isVisible, content } = modal;
   return {
-    modal: state.modal.instances[ownProps.id],
+    isVisible,
+    content,
   };
 };
 

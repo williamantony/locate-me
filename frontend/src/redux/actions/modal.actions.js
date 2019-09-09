@@ -1,3 +1,5 @@
+import { setBackgroundBlur } from './theme.actions';
+
 export const CREATE_MODAL = 'CREATE_MODAL';
 export const DESTROY_MODAL = 'DESTROY_MODAL';
 export const SHOW_MODAL = 'SHOW_MODAL';
@@ -11,15 +13,18 @@ export const createModal = (modalId, content = null, isVisible = false) => {
       payload: {
         modalId,
         content,
-        isVisible,
+        isVisible: false,
       },
     });
 
-    setTimeout(
-      () => {
-        dispatch(showModal(modalId));
-      }, 250
-    );
+    if (isVisible) {
+      setTimeout(
+        () => {
+          dispatch(showModal(modalId));
+          dispatch(setBackgroundBlur(true));
+        }, 250
+      );
+    }
 
   };
 };
@@ -37,6 +42,8 @@ export const showModal = (modalId) => {
 export const hideModal = (modalId) => {
   return dispatch => {
 
+    dispatch(setBackgroundBlur(false));
+    
     dispatch({
       type: HIDE_MODAL,
       payload: {

@@ -1,11 +1,13 @@
 .ModalInstance {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   visibility: hidden;
   position: fixed;
   top: 0px;
   left: 0%;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: visibility 0s ease-in-out 0.5s,
     opacity 0.5s ease-in-out 0s;
@@ -15,32 +17,99 @@
   visibility: visible;
   opacity: 1.0;
   transition: visibility 0s ease-in-out 0s,
-    opacity 0.5s ease-in-out 0s;
+    opacity 0.25s ease-in-out 0s;
 }
 
 .ModalInstance__wrapper {
   width: 100%;
-  max-width: 480px;
+  max-width: 640px;
   margin: 0px auto;
 }
 
+.ModalInstance__bg {
+  position: fixed;
+  top: 0px;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  cursor: crosshair;
+  background-color: #b4b4b4;
+  opacity: 0.5;
+}
+
 .ModalInstance__box {
+  position: relative;
+  top: -25px;
+  width: 100%;
+  max-width: 640px;
+  max-height: calc(100% - 10px);
   border-radius: 5px;
+  margin: 5px;
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5),
+    0px 50px 50px -20px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
+  opacity: 0;
   overflow: hidden;
+  transition: top 0.25s ease-in-out 0.5s,
+    opacity 0.25s ease-in-out 0s;
+}
+.ModalInstance--isVisible .ModalInstance__box {
+  top: 0px;
+  opacity: 1.0;
+  transition: top 0.25s ease-in-out 0.25s,
+    opacity 0.25s ease-in-out 0.25s;
 }
 
 .ModalInstance__header {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  margin-bottom: -35px;
+  cursor: move;
+}
+.ModalInstance__title {
+  flex-basis: calc(100% - 35px);
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  padding: 0px 25px;
 }
 
 .ModalInstance__close-icon {
-  width: 30px;
-  height: 30px;
-  background-color: red;
+  position: relative;
+  flex-basis: 35px;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.15s ease-in-out 0s;
+  z-index: 999999;
+}
+.ModalInstance__close-icon__image {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-image: url('./icons/plus-icon.png');
+  background-size: 15px auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: scale(0.75) rotate(45deg);
+  transition: transform 0.15s ease-in-out 0s;
+}
+.ModalInstance__close-icon:hover .ModalInstance__close-icon__image {
+  transform: scale(1.0) rotate(-45deg);
 }
 
 .ModalInstance__body {
-  height: 250px;
+  position: relative;
+  height: auto;
+  max-height: calc(100vh - 10px);
+  overflow: auto;
+}
+.ModalInstance__body__content {
+  padding-bottom: 50px;
 }
