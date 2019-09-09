@@ -1,9 +1,13 @@
 body {
-  background-color: #eee;
+  background-color: #efebe2;
 }
 
 .wrapper {
   width: 100%;
   max-width: 640px;
   margin: 0px auto;
+}
+
+.wrapper--max-width-480px {
+  max-width: 480px;
 }
