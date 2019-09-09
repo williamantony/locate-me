@@ -1,0 +1,28 @@
+.ModalTitle {
+  padding: 0px 25px;
+  background-color: #f5f5f5;
+}
+.ModalTitle__wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 0px auto;
+}
+.ModalTitle__title {
+  color: #444444;
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.25px;
+  text-shadow: 1px 1px 0px #fff;
+  padding: 30px 0px;
+}
+
+.ModalTitle--align-left {
+  text-align: left;
+}
+.ModalTitle--align-center {
+  text-align: center;
+}
+.ModalTitle--align-right {
+  text-align: right;
+}
