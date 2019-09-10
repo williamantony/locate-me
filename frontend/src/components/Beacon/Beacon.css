@@ -1,0 +1,134 @@
+.Beacon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  border-radius: 3px;
+  background-color: #fff;
+  border-top: 1px solid #f5f5f5;
+  cursor: pointer;
+}
+.Beacon:nth-child(even) {
+  background-color: #fafafa;
+}
+.Beacon:hover {
+  background-color: #f5f5f5;
+}
+
+
+
+.Beacon__text {
+  flex-basis: calc(100% - 200px);
+  width: calc(100% - 200px);
+}
+.Beacon__text__name {
+  position: relative;
+  width: 100%;
+  color: #07233f;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 25px;
+  overflow: hidden;
+}
+.Beacon__text__identifier {
+  display: none;
+  position: relative;
+  width: 100%;
+  color: #999;
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 25px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+
+
+.Beacon__status {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-basis: 125px;
+  height: 100%;
+}
+.Beacon__status--column {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+
+
+.Beacon__status__icon {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 7px;
+  margin-bottom: 0px;
+  overflow: hidden;
+}
+
+.Beacon__status--h .Beacon__status__icon {
+  width: 20px;
+  height: 5px;
+  border-radius: 2.5px;
+  margin-bottom: 7px;
+}
+
+.Beacon__status--created .Beacon__status__icon {
+  background-color: #03A9F4;
+}
+.Beacon__status--active .Beacon__status__icon {
+  background-color: #4caf50;
+}
+.Beacon__status--idle .Beacon__status__icon {
+  background-color: #FF9800;
+}
+.Beacon__status--closed .Beacon__status__icon {
+  background-color: #e11f11;
+}
+
+
+
+.Beacon__status__text {
+  font-size: 11px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.Beacon__status--created .Beacon__status__text {
+  color: #2196f3;
+}
+.Beacon__status--active .Beacon__status__text {
+  color: #2E7D32;
+}
+.Beacon__status--idle .Beacon__status__text {
+  color: #F57C00;
+}
+.Beacon__status--closed .Beacon__status__text {
+  color: #b71c1c;
+}
+
+
+
+.Beacon__icon-arrow {
+  flex-basis: 25px;
+  height: 100%;
+  background-image: url('./images/right-arrow-icon.png');
+  background-size: 50% auto;
+  background-position: left center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+}
