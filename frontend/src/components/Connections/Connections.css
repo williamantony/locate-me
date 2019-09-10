@@ -1,0 +1,8 @@
+.Connections {
+  padding: 0px 25px;
+}
+.Connections__wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 0px auto;
+}
