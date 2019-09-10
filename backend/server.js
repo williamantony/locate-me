@@ -1,7 +1,9 @@
 require('dotenv').config();
 
+const fs = require('fs');
+const https = require('https');
+
 const express =  require('express');
-const http = require('http');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -15,12 +17,24 @@ const {
 
 
 
+const log = console.log;
+
+console.log = (...args) => {
+  if (process.env.DEBUG === 'true')
+    log.apply(console, args);
+};
+
+
+
 /**
  * HTTP Server for Websocket
  * on a separate Port.
  */
 
-const httpServer = http.createServer();
+const httpServer = https.createServer({
+  key: fs.readFileSync('ssl/socket/server.key'),
+  cert: fs.readFileSync('ssl/socket/server.cert'),
+});
 const socketConnection = webSocket.connect(httpServer);
 
 httpServer.listen(WS_PORT, () => {
@@ -36,6 +50,11 @@ httpServer.listen(WS_PORT, () => {
 
 const server = express();
 
+const secureServer = https.createServer({
+  key: fs.readFileSync('ssl/rest/server.key'),
+  cert: fs.readFileSync('ssl/rest/server.cert'),
+}, server);
+
 server.use(bodyParser.json());
 server.use(cors());
 server.use(morgan("tiny"));
@@ -43,6 +62,6 @@ server.use(webSocket.addToExpress(socketConnection));
 
 setRoutes(server);
 
-server.listen(PORT, () => {
+secureServer.listen(PORT, () => {
   console.log(`Server is listening on http://localhost:${PORT}`)
 });
