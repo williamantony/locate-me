@@ -6,9 +6,9 @@ import { hideModal } from "./modal.actions";
 
 const REST_URL = getEndpoint('REST');
 
-export const SET_CLIENT_INFO = 'SET_CLIENT_INFO';
 export const SET_CLIENT_ID = 'SET_CLIENT_ID';
 export const SET_CLIENT_NAME = 'SET_CLIENT_NAME';
+export const SET_CLIENT_INFO = 'SET_CLIENT_INFO';
 export const SET_CLIENT_LOCATION = 'SET_CLIENT_LOCATION';
 
 
