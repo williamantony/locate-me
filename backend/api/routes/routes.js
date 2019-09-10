@@ -1,9 +1,13 @@
 const router = {
-  location: require('./location.routes'),
+  client: require('./clients.routes'),
+  connections: require('./connections.routes'),
+  beacons: require('./beacons.routes'),
 };
 
 module.exports = server => {
 
-  server.use('/location', router.location);
+  server.use('/clients', router.client);
+  server.use('/connections', router.connections);
+  server.use('/beacons', router.beacons);
 
 };
